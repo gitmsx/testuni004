@@ -12,7 +12,7 @@ public class sc003 : MonoBehaviour
     public float rotationSpeed = 1.0f;
     public KeyCode rewindButton;
     public float TimeRewind =7;
-   // public Slider slider;
+    public Slider slider;
 
     
 
@@ -26,9 +26,10 @@ public class sc003 : MonoBehaviour
     {
        
         positionList = new List<Vector3>();
-      //  slider.maxValue = TimeRewind / 0.02f;
-      //  slider.maxValue = TimeRewind / Time.fixedDeltaTime;
+        slider.maxValue = TimeRewind / Time.fixedDeltaTime;
         rb = GetComponent<Rigidbody>();
+        slider.maxValue = TimeRewind / 0.02f;
+        slider.value = 0;
 
     }
     //private void Awake()
@@ -40,7 +41,11 @@ public class sc003 : MonoBehaviour
 
     private void FixedUpdate()
     {
-        TimeRewind = 7;
+
+
+
+
+        rb.isKinematic = false;
 
         if (IsRewind)
         {
@@ -50,24 +55,28 @@ public class sc003 : MonoBehaviour
                 int LastPosition = positionList.Count - 1;
                 transform.position = positionList[LastPosition];
                 positionList.RemoveAt(LastPosition);
-             //   slider.value = positionList.Count;
-            //    rb.isKinematic = true;
+                slider.value = positionList.Count;
+                rb.isKinematic = true;
 
             }
+           
+            //if (rb.isKinematic == true)
+            //{
+            //    rb.isKinematic = false;
+            //}
+
         }
 
         else
         {
 
-            if (positionList.Count >= TimeRewind / Time.fixedDeltaTime)
+            while (positionList.Count >= TimeRewind / Time.fixedDeltaTime)
             {
                 positionList.RemoveAt(0);
             }
             positionList.Add(transform.position);
-          //  slider.value = positionList.Count+1;
-          //  rb.isKinematic = false;
-
- //  rb.isKinematic = false;
+            slider.value = positionList.Count+1;
+            rb.isKinematic = false;
 
         }
      
