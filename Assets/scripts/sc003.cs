@@ -26,7 +26,11 @@ public class sc003 : MonoBehaviour
     void Start()
     {
         TimeRewind = 7;
-        positionList = new List<Vector3>();
+        slider = GameObject.Find("Slider77").GetComponent<Slider>();
+
+
+
+    positionList = new List<Vector3>();
       //  slider.maxValue = TimeRewind / 0.02f;
          slider.maxValue = TimeRewind / Time.fixedDeltaTime;
         rb = GetComponent<Rigidbody>();
