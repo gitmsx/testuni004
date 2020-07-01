@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+ 
 
 public class sc003 : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class sc003 : MonoBehaviour
     public float rotationSpeed = 1.0f;
     public KeyCode rewindButton;
     public float TimeRewind =7;
-     public Slider slider;
+    public Slider slider;
 
     
 
