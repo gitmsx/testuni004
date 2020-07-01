@@ -12,7 +12,7 @@ public class sc003 : MonoBehaviour
     public float rotationSpeed = 1.0f;
     public KeyCode rewindButton;
     public float TimeRewind =7;
-   // public Slider slider;
+     public Slider slider;
 
     
 
@@ -24,10 +24,10 @@ public class sc003 : MonoBehaviour
 
     void Start()
     {
-       
+        TimeRewind = 7;
         positionList = new List<Vector3>();
       //  slider.maxValue = TimeRewind / 0.02f;
-      //  slider.maxValue = TimeRewind / Time.fixedDeltaTime;
+         slider.maxValue = TimeRewind / Time.fixedDeltaTime;
         rb = GetComponent<Rigidbody>();
 
     }
@@ -50,8 +50,8 @@ public class sc003 : MonoBehaviour
                 int LastPosition = positionList.Count - 1;
                 transform.position = positionList[LastPosition];
                 positionList.RemoveAt(LastPosition);
-             //   slider.value = positionList.Count;
-            //    rb.isKinematic = true;
+                slider.value = positionList.Count;
+                rb.isKinematic = true;
 
             }
         }
@@ -64,8 +64,8 @@ public class sc003 : MonoBehaviour
                 positionList.RemoveAt(0);
             }
             positionList.Add(transform.position);
-          //  slider.value = positionList.Count+1;
-          //  rb.isKinematic = false;
+           slider.value = positionList.Count+1;
+          rb.isKinematic = false;
 
  //  rb.isKinematic = false;
 
@@ -76,7 +76,7 @@ public class sc003 : MonoBehaviour
 
     void Update()
     {
-
+        TimeRewind = 7;
 
         float v1 = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         float h1 = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime / 10;
